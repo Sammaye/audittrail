@@ -124,6 +124,26 @@ This is useful if you put the behaviour in a class that extends CActiveRecord wh
 			'ErrorLog',  // I use this to log error messages to MYSQL, no need to keep a log of this
 		),
 	)
+## widget audit log grid
+
+    $this->widget('vendor.uldisn.audittrail.components.AudittrailHistory',
+            array('model'=>$model,'id' => 'audittrail_data_grid')
+            );
+
+## link for fancy box
+
+    $this->widget('vendor.yiiext.fancybox-widget.EFancyboxWidget',array(
+        'selector'=>'a[href*=\'/fancybox\']',
+        'options'=>array(
+        ),
+    ));        
+
+    echo CHtml::link(
+            'Auditrecords', array(
+        '/audittrail/show/fancybox',
+        'model_name' => get_class($model),
+        'model_id' => $model->getPrimaryKey(),
+    ));
 
 ## Printing out the audit log
 

@@ -9,5 +9,9 @@
             "name": "Sammaye",
             "homepage": "http://sammaye.wordpress.com"
         }
-    ]
+    ],
+    "require": {
+        "php":">=5.1.0",
+        "clevertech/yii-booster": "dev-master"
+    },
 }
