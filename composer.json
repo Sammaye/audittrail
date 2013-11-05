@@ -12,6 +12,7 @@
     ],
     "require": {
         "php":">=5.1.0",
-        "clevertech/yii-booster": "dev-master"
+        "clevertech/yii-booster": "dev-master",
+        "yiiext/fancybox-widget":"dev-master"
     },
 }
