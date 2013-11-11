@@ -18,6 +18,8 @@ class AuditTrail extends CActiveRecord
 	 * @var string $model_id
 	 */
 
+    var $username_search;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return AuditTrail the static model class
@@ -54,7 +56,7 @@ class AuditTrail extends CActiveRecord
 			array('user_id', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, new_value, old_value, action, model, field, stamp, user_id, model_id', 'safe', 'on'=>'search'),
+			array('id, new_value, old_value, action, model, field, stamp, user_id, model_id, username_search', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -111,6 +113,7 @@ class AuditTrail extends CActiveRecord
 		$criteria->compare('stamp',$this->stamp,true);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('model_id',$this->model_id);
+        $criteria->compare('user.username', $this->username_search, true);
 		$criteria->mergeWith($this->getDbCriteria());
 		return new CActiveDataProvider(
 			get_class($this),

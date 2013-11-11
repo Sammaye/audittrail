@@ -1,5 +1,5 @@
 {
-    "name": "sammaye/auditrail2",
+    "name": "dbrisinajumi/audittrail",
     "description": "A reload of the popular audit trail extension",
     "keywords": ["audit","trail","yii","phundament"],
     "type": "yii-extension",
@@ -11,8 +11,6 @@
         }
     ],
     "require": {
-        "php":">=5.1.0",
-        "clevertech/yii-booster": "dev-master",
-        "yiiext/fancybox-widget":"dev-master"
-    },
+        "php":">=5.1.0"
+    }
 }
