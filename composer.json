@@ -1,5 +1,5 @@
 {
-    "name": "sammaye/auditrail2",
+    "name": "dbrisinajumi/audittrail",
     "description": "A reload of the popular audit trail extension",
     "keywords": ["audit","trail","yii","phundament"],
     "type": "yii-extension",
