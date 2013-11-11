@@ -24,7 +24,7 @@ class AudittrailHistory extends CWidget {
         $m->model = get_class($this->model);
         $m->model_id = $this->model->getPrimaryKey();
         
-        $this->render('history',
+        $this->renderpartial('history',
                 array(
                     'model' => $m,
                     'id' => $this->id,
