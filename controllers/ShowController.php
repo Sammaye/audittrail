@@ -41,7 +41,7 @@ class ShowController extends Controller {
         $m->unsetAttributes();
         $m->model = $model_name;
         $m->model_id = $model_id;
-        $this->render(
+        $this->renderpartial(
             'fancybox', array(
             'model' => $m,
                 )
