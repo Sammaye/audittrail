@@ -1,5 +1,5 @@
 {
-    "name": "sammaye/auditrail2",
+    "name": "dbrisinajumi/audittrail",
     "description": "A reload of the popular audit trail extension",
     "keywords": ["audit","trail","yii","phundament"],
     "type": "yii-extension",
@@ -9,5 +9,8 @@
             "name": "Sammaye",
             "homepage": "http://sammaye.wordpress.com"
         }
-    ]
+    ],
+    "require": {
+        "php":">=5.1.0"
+    }
 }
