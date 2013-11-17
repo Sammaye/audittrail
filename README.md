@@ -7,18 +7,15 @@ I have basically cleaned up some of the code and made a few additions to the beh
 
 ## Installing the extension
 
-The method of installation has changed. I have removed the need to install a module since:
 
-- It only provided global configuration variables for the audit log widget
-- It was extra bloat that didn't justify the needs
-- I found that in a real system you wouldn't want a page showing all audit log entries since the audit logs
-- The audit log is quite easy to add to a page using `CGridView`
 
 As such, for these reasons, the module itself has been deleted.
 
 ### Composer
 
 This extension is listed on [packagist](https://github.com/DBRisinajumi/audittrail).
+
+	php copmoser.phar require dbrisinajumi/audittrail
 
 ### Step 1
 
@@ -36,11 +33,18 @@ Time to install the table. You can use the migration file provided by the origin
 run it on your DB server (using PHPMyAdmin or something) and watch the magic unfold.
 
 ### Step 3
+Create alise
+	'aliases'    => array(
+	 	'audittrail' => 'vendor.dbrisinajumi.audittrail',
+	)
+
 
 Reference the `AuditTrail` model within your configuration:
 
 	'import'=>array(
-		'vendor.dbrisinajumi.audittrail.models.AuditTrail',
+		'audittrail.AuditTrail',
+		'audittrail.models.*', 
+        	'audittrail.behaviors.*', 
 	),
 
 **Note** You can move `AuditTrail` to your `models` folder preventing you from having to link it like this.
@@ -50,7 +54,7 @@ Reference the `AuditTrail` model within your configuration:
 Simply use the behaviour within a model like:
 
 	'LoggableBehavior'=> array(
-		'class' => 'vendor.dbrisinajumi.audittrail.behaviors.LoggableBehavior',
+		'class' => 'audittrail.behaviors.LoggableBehavior',
 	)
 
 ### step 5
