@@ -18,13 +18,15 @@ As such, for these reasons, the module itself has been deleted.
 
 ### Composer
 
-This extension is listed on [packagist](https://packagist.org/packages/sammaye/auditrail2).
+This extension is listed on [packagist](https://github.com/DBRisinajumi/audittrail).
 
 ### Step 1
 
 To install you must first choose a folder in which to place this repository. I have chosen:
 
     /root/backend/extensions/modules
+    or
+    /vendor/dbrisinajumi
 
 Since this seems most right to me. Clone this repository to that location.
 
@@ -38,7 +40,7 @@ run it on your DB server (using PHPMyAdmin or something) and watch the magic unf
 Reference the `AuditTrail` model within your configuration:
 
 	'import'=>array(
-		'site.backend.extensions.modules.auditTrail.models.AuditTrail',
+		'vendor.dbrisinajumi.audittrail.models.AuditTrail',
 	),
 
 **Note** You can move `AuditTrail` to your `models` folder preventing you from having to link it like this.
@@ -48,8 +50,20 @@ Reference the `AuditTrail` model within your configuration:
 Simply use the behaviour within a model like:
 
 	'LoggableBehavior'=> array(
-		'class' => 'site.backend.extensions.modules.auditTrail.behaviors.LoggableBehavior',
+		'class' => 'vendor.dbrisinajumi.audittrail.behaviors.LoggableBehavior',
 	)
+
+### step 5
+
+For migration in configuration file console add
+	'aliases' => array(
+		'audittrail' => 'vendor.dbrisinajumi.audittrail',
+	)
+If table name defined in params, add all params from main config	
+	'params'     => 
+    		CMap::mergeArray(
+            		$mainConfig['params'],
+            		array(..))
 
 ### Epilogue
 
@@ -65,7 +79,7 @@ copy and paste from here.
 Some people don't actually have defined users but do have an attribute of the auditable model that would define a unique identification of who edited it. For this end you can use:
 
 	'LoggableBehavior'=> array(
-		'class' => 'site.backend.extensions.modules.auditTrail.behaviors.LoggableBehavior',
+		'class' => 'vendor.dbrisinajumi.audittrail.behaviors.LoggableBehavior',
   		'userAttribute' => 'name'
 	)
 
@@ -74,7 +88,7 @@ Some people don't actually have defined users but do have an attribute of the au
 The date of the audit log can be changed to used timestamps instead using:
 
 	'LoggableBehavior'=> array(
-		'class' => 'site.backend.extensions.modules.auditTrail.behaviors.LoggableBehavior',
+		'class' => 'vendor.dbrisinajumi.audittrail.behaviors.LoggableBehavior',
   		'storeTimestamp' => true
 	)
 
@@ -83,7 +97,7 @@ The date of the audit log can be changed to used timestamps instead using:
 You can adjust the date format using the `dateFormat` property of the behaviour:
 
 	'LoggableBehavior'=> array(
-		'class' => 'site.backend.extensions.modules.auditTrail.behaviors.LoggableBehavior',
+		'class' => 'vendor.dbrisinajumi.audittrail.behaviors.LoggableBehavior',
   		'dateFormat' => 'Y-m-d H:i:s'
 	)
 
@@ -98,7 +112,7 @@ To do this include the behaviour in your models like you normally would:
 But then add either an `ignored` or `allowed` (or both) list of fields to the behaviour like so:
 
 	'LoggableBehavior'=> array(
-		'class' => 'site.backend.extensions.modules.auditTrail.behaviors.LoggableBehavior',
+		'class' => 'vendor.dbrisinajumi.audittrail.behaviors.LoggableBehavior',
   		'allowed' => array(
   			'version',
   			'ns_purchase_description'
@@ -119,14 +133,14 @@ As you will notice I allow the `ns_purchase_description` field but also ignore i
 This is useful if you put the behaviour in a class that extends CActiveRecord which all your own models extend from.  This is useful in cases where you want ALL your classes to share the same core (like this behaviour) without having to specify it in every model you create.
 
 	'LoggableBehavior'=> array(
-		'class' => 'site.backend.extensions.modules.auditTrail.behaviors.LoggableBehavior',
+		'class' => 'vendor.dbrisinajumi.audittrail.behaviors.LoggableBehavior',
 	  	'ignored_class' => array(
 			'ErrorLog',  // I use this to log error messages to MYSQL, no need to keep a log of this
 		),
 	)
 ## widget audit log grid
 
-    $this->widget('vendor.uldisn.audittrail.components.AudittrailHistory',
+    $this->widget('vendor.dbrisinajumi.audittrail.components.AudittrailHistory',
             array('model'=>$model,'id' => 'audittrail_data_grid')
             );
 
